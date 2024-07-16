@@ -1,0 +1,1 @@
+eval "#{ARGV.first}"
