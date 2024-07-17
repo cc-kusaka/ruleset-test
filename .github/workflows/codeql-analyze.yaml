@@ -2,15 +2,13 @@ name: "CodeQL Analysis"
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     paths-ignore:
       - 'public/**'
       - 'spec/**'
       - 'vendor/**'
-      - 'bin/**'
-      - 'config/**'
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 11 * * *"
 
 jobs:
   analyze:
