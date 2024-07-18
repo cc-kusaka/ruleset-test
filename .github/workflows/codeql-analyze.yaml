@@ -19,8 +19,6 @@ jobs:
       contents: read
       security-events: write
   
-    if: ${{ !(github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) }}
-
     strategy:
       fail-fast: false
       matrix:
@@ -29,6 +27,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        # 苦肉の策だが、revert 時に skip させる挙動にする場合、 CodeQL 自体は実行しないと status チェックに引っかかる
+        # matrix.language を から配列にしてもエラーになるため、ソース自体を checkout せずにスキップを実現する
+        if: ${{ !(github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) }}
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
