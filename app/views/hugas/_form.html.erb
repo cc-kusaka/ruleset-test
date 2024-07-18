@@ -1,0 +1,17 @@
+<%= form_with(model: huga) do |form| %>
+  <% if huga.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(huga.errors.count, "error") %> prohibited this huga from being saved:</h2>
+
+      <ul>
+        <% huga.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
