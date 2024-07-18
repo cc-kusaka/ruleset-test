@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @huga %>
+
+<div>
+  <%= link_to "Edit this huga", edit_huga_path(@huga) %> |
+  <%= link_to "Back to hugas", hugas_path %>
+
+  <%= button_to "Destroy this huga", @huga, method: :delete %>
+</div>
