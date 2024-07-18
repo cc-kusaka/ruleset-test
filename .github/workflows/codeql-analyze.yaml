@@ -19,7 +19,7 @@ jobs:
       contents: read
       security-events: write
   
-    if: ${{ github.event_name != 'pull_request' || startsWith( github.head_ref, "revert-" ) }}
+    if: ${{ !(github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) }}
 
     strategy:
       fail-fast: false
