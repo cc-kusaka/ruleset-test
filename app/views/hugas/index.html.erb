@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Hugas</h1>
+
+<div id="hugas">
+  <% @hugas.each do |huga| %>
+    <%= render huga %>
+    <p>
+      <%= link_to "Show this huga", huga %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New huga", new_huga_path %>
