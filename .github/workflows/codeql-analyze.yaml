@@ -44,6 +44,8 @@ jobs:
         if: steps.check_revert_pr.outputs.skip != 'true'
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
         if: steps.check_revert_pr.outputs.skip != 'true'
       - name: display test
         run: echo tes 3 && echo ${{ steps.check_revert_pr.outputs.skip }}
