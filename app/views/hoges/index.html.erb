@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Hoges</h1>
+
+<div id="hoges">
+  <% @hoges.each do |hoge| %>
+    <%= render hoge %>
+    <p>
+      <%= link_to "Show this hoge", hoge %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New hoge", new_hoge_path %>
