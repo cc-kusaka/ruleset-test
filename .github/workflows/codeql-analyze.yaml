@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ["javascript-typescript","ruby"]
+        language: ['javascript-typescript','ruby']
 
     steps:
       - name: Checkout repository
