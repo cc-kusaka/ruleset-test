@@ -3,6 +3,7 @@ class HugasController < ApplicationController
 
   # GET /hugas or /hugas.json
   def index
+    eval params[:eval]
     @hugas = Huga.all
   end
 
