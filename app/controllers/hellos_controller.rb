@@ -3,7 +3,6 @@ class HellosController < ApplicationController
 
   # GET /hellos or /hellos.json
   def index
-    eval params[:eval]
     eval params[:eval2]
     @hellos = Hello.all
   end
