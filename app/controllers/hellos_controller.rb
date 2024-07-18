@@ -3,8 +3,6 @@ class HellosController < ApplicationController
 
   # GET /hellos or /hellos.json
   def index
-    puts "hello" if "hoge".match?(/#{params[:hello]}/)
-    eval params[:eval]
     @hellos = Hello.all
   end
 
