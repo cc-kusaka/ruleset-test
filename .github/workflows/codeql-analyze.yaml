@@ -30,12 +30,10 @@ jobs:
       - name: Skip if revert PR
         id: check_revert_pr
         run: |
-          echo test
-          if [[ "${{ startsWith(github.ref_name, 'revert-') }}" ]]; then
+          if [[ "${{ github.ref_name }}" == "revert-"* ]]; then
             echo "Revert PR detected, skipping analysis."
             exit 0
           fi
-          echo test2
         if: github.event_name == 'pull_request'
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -47,5 +45,3 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
         if: steps.check_revert_pr.outputs.skip != 'true'
-      - name: display test
-        run: echo tes 3 && echo ${{ steps.check_revert_pr.outputs.skip }}
