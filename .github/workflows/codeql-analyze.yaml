@@ -25,7 +25,7 @@ jobs:
         # revert 時にも skip(if) ではなく (対象を空にして) 実行しないと CodeQL の実行結果が存在しないとして merge できない
         # 苦肉の策だが、三項演算子の代替となる ${{ condition && 'a' || 'b' }} の記法を利用する
         # (strategy 内で matrix を動的に設定する別の方法としては、別job を使うなどの方法もあるが実行効率を優先する)
-        language: ${{ ((github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) && '[ruby]') || '[ruby]' }}
+        language: ${{ ((github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) && []) || [] }}
         #language: ${{ (github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) && '[]' || '[\"javascript-typescript\",\"ruby\"]' }}
 
     steps:
