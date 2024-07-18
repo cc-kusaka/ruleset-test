@@ -1,8 +1,6 @@
 name: "CodeQL Analysis"
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
     paths-ignore:
@@ -16,6 +14,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    if: startsWith( github.head_ref, "revert-" )
     permissions:
       actions: read
       contents: read
@@ -29,21 +28,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Skip if revert PR
-        id: check_revert_pr
-        run: |
-          if [[ "${{ github.head_ref }}" == "revert-"* ]]; then
-            echo "Revert PR detected, skipping analysis."
-            exit 0
-          fi
-        if: github.event_name == 'pull_request'
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-        if: steps.check_revert_pr.outputs.skip != 'true'
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-        if: steps.check_revert_pr.outputs.skip != 'true'
