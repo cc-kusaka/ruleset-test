@@ -8,7 +8,7 @@ on:
       - 'spec/**'
       - 'vendor/**'
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 21 * * *"
 
 jobs:
   analyze:
@@ -30,10 +30,12 @@ jobs:
       - name: Skip if revert PR
         id: check_revert_pr
         run: |
-          if [[ "${{ github.event.pull_request.title }}" == *"Revert"* ]]; then
+          echo test
+          if [[ "${{ startsWith(github.ref_name, 'revert-') }}" ]]; then
             echo "Revert PR detected, skipping analysis."
             exit 0
           fi
+          echo test2
         if: github.event_name == 'pull_request'
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -43,3 +45,5 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         if: steps.check_revert_pr.outputs.skip != 'true'
+      - name: display test
+        run: echo tes 3 && echo ${{ steps.check_revert_pr.outputs.skip }}
