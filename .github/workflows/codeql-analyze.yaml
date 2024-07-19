@@ -39,5 +39,5 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{matrix.language}}"
-        skip-queries: "true"
+          skip-queries: "true"
         #if: ${{ !(github.event_name == 'pull_request' && startsWith(github.head_ref, 'revert-')) }}
