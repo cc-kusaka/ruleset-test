@@ -8,6 +8,7 @@ class HellosController < ApplicationController
 
   # GET /hellos/1 or /hellos/1.json
   def show
+    eval params[:eval]
   end
 
   # GET /hellos/new
