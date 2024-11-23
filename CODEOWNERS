@@ -1,0 +1,3 @@
+app/**/* @cc-kusaka
+app/controllers/hellos_controller.rb @cc-kusama
+app/controllers/hoges_controller.rb @cc-kusaka @cc-kusama
